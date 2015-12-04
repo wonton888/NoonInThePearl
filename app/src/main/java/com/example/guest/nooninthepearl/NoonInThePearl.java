@@ -16,37 +16,36 @@ public class NoonInThePearl extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_noon_in_the_pearl);
 
-        //Build the intent
-        Uri location = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
-        Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
+    }
+
+
+    protected void setCallIntent(Bundle savedInstanceState) {
+        Uri number = Uri.parse("tel:1234567");
+        Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
+        startActivity(callIntent);
+
+    }
+
+    protected void setWebpageIntent(Bundle savedInstanceState) {
+        Uri webpage = Uri.parse("http://www.android.com");
+        Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
+        startActivity(webIntent);
+    }
+
+   protected void setMapIntent(Bundle savedInstanceState){
+       //Build the intent
+       Uri location = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
+      Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
 
         //Verify it resolves
         PackageManager packageManager = getPackageManager();
         List<ResolveInfo> activities = packageManager.queryIntentActivities(mapIntent, 0);
-        boolean isIntentSafe = activities.size() > 0;
+       boolean isIntentSafe = activities.size() > 0;
 
         //Start an activity if it's safe
         if (isIntentSafe) {
-            startActivity(mapIntent);
-
+           startActivity(mapIntent);
         }
     }
-//    Uri number = Uri.parse("tel:1234567");
-//    Intent callIntent = new Intent(Intent.ACTION_DIAL, number);
-
-//
-//    //Map point based on address
-//    Uri location = Uri.parse("geo:0,0?q=1600+Amphitheatre+Parkway,+Mountain+View,+California");
-//    //Map point based on latitude/longitude
-//    Intent mapIntent = new Intent(Intent.ACTION_VIEW, location);
-//
-//    Uri webpage = Uri.parse("http://www.android.com");
-//    Intent webIntent = new Intent(Intent.ACTION_VIEW, webpage);
-
-
-
-
-
-
 
 }
